@@ -1,7 +1,7 @@
 ## Архитектура
 
 ```
-WCL.Desktop  ──►  WCL.App  ──►  WCL.Core  ◄──  WCL.Api
+WCL.Desktop  ──►( WCL.App  ──►  WCL.Core  ◄──  WCL.Api )
  (точка входа,     (View +        (модели,        (HTTP-клиенты,
   DI-контейнер)    ViewModel,      интерфейсы,     DTO, маппинг
                    UI-сервисы)     ошибки)         ошибок)
