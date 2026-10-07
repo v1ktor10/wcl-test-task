@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="WCL.Api/WCL.Api.csproj" />
-  <Project Path="WCL.App/WCL.App.csproj" />
-  <Project Path="WCL.Core/WCL.Core.csproj" />
-  <Project Path="WCL.Desktop/WCL.Desktop.csproj" />
+    <Project Path="WCL.Api/WCL.Api.csproj"/>
+    <Project Path="WCL.App/WCL.App.csproj"/>
+    <Project Path="WCL.Core/WCL.Core.csproj"/>
+    <Project Path="WCL.Desktop/WCL.Desktop.csproj"/>
 </Solution>
