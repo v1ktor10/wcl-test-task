@@ -41,7 +41,7 @@ public sealed partial class MainViewModel : ViewModelBase
 
     [ObservableProperty] public partial SectionViewModel SelectedSection { get; set; }
 
-    [ObservableProperty] private string _currentIcon = _icons[0];
+    [ObservableProperty] public partial string CurrentIcon { get; set; } = _icons[0];
 
     public IReadOnlyList<SectionViewModel> Sections { get; }
 
