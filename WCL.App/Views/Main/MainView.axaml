@@ -1,0 +1,19 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:main="clr-namespace:WCL.App.Views.Main"
+             x:Class="WCL.App.Views.Main.MainView"
+             x:DataType="main:MainViewModel">
+    <Grid Margin="12">
+        <TabControl ItemsSource="{Binding Sections}"
+                    SelectedItem="{Binding SelectedSection}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+
+        <ContentControl HorizontalAlignment="Right" VerticalAlignment="Top"
+                        />
+    </Grid>
+</UserControl>

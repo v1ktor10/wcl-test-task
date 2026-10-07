@@ -14,8 +14,25 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia"/>
-    <PackageReference Include="Classic.Avalonia.Theme"/>
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"/>
+    <PackageReference Include="ShadUI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MainView\MainView.axaml.cs">
+      <DependentUpon>MainView.axaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Windows\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Windows\MainWindow\MainWindow.axaml" />
   </ItemGroup>
 
 </Project>

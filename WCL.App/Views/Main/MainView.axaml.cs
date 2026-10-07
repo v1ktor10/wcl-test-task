@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace WCL.App;
+namespace WCL.App.Views.Main;
 
 public partial class MainView : UserControl
 {

@@ -1,0 +1,66 @@
+﻿@baseUrl = https://fakeapifordevs.vercel.app
+@email = chel.test@example.com
+@password = Passw0rd!123
+
+### Регистрация
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "name": "Chel",
+    "password": "{{password}}"
+}
+
+### Регистрация с тем же email
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "name": "Chel",
+    "password": "{{password}}"
+}
+
+### Логин
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+> {%
+client.global.set("token", response.body.access_token);
+    client.global.set("refreshToken", response.body.refresh_token);
+%}
+
+### Логин с неверным паролем
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "wrong-password"
+}
+
+### Текущий пользователь
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Текущий пользователь без токена
+GET {{baseUrl}}/api/auth/me
+
+### Логаут
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "refresh_token": "{{refreshToken}}"
+}
+
+### Текущий пользователь после логаута
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}

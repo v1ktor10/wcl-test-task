@@ -1,7 +1,13 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="WCL.App.App">
+             xmlns:app="clr-namespace:WCL.App"
+             xmlns:shadUi="clr-namespace:ShadUI;assembly=ShadUI"
+             x:Class="WCL.App.App"
+             RequestedThemeVariant="Default">
+    <Application.DataTemplates>
+        <app:ViewLocator />
+    </Application.DataTemplates>
     <Application.Styles>
-        <ClassicTheme />
+        <shadUi:ShadTheme />
     </Application.Styles>
 </Application>
