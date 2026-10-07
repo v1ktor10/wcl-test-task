@@ -3,7 +3,7 @@ using WCL.Core.Abstractions;
 
 namespace WCL.Api;
 
-internal sealed class BearerTokenHandler(ISessionState session) : DelegatingHandler
+internal sealed class BearerTokenHandler(ISessionStore session) : DelegatingHandler
 {
     protected override Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request, CancellationToken ct)

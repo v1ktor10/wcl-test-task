@@ -3,7 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using WCL.App.Views.Main;
-using WCL.App.Windows.MainWindow;
+using WCL.App.Windows.Main;
 
 namespace WCL.App;
 

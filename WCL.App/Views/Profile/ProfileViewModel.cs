@@ -9,8 +9,8 @@ namespace WCL.App.Views.Profile;
 
 public sealed partial class ProfileViewModel : SectionViewModel
 {
-    private readonly ISessionState _session;
     private readonly IAvatarLoader _avatars;
+    private readonly ISessionState _session;
 
     private CancellationTokenSource? _avatarCts;
     private string? _avatarUrl;
@@ -28,7 +28,7 @@ public sealed partial class ProfileViewModel : SectionViewModel
             _ = RefreshAvatarAsync();
         };
 
-        _ = RefreshAvatarAsync(); 
+        _ = RefreshAvatarAsync();
     }
 
     public override string Title => "Профиль";

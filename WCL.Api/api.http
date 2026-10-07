@@ -32,8 +32,10 @@ Content-Type: application/json
 }
 
 > {%
+
 client.global.set("token", response.body.access_token);
     client.global.set("refreshToken", response.body.refresh_token);
+
 %}
 
 ### Логин с неверным паролем

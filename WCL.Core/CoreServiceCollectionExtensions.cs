@@ -6,7 +6,8 @@ namespace WCL.Core;
 
 public static class CoreServiceCollectionExtensions
 {
-    public static IServiceCollection RegisterCoreDependencies(this IServiceCollection services) => services
-        .AddSingleton<ISessionState, SessionState>()
-        .AddSingleton<IAuthService, AuthService>();
+    public static IServiceCollection AddWclCore(this IServiceCollection services) =>
+        services.AddSingleton<Session>().AddSingleton<ISessionState>(sp => sp.GetRequiredService<Session>())
+            .AddSingleton<ISessionStore>(sp => sp.GetRequiredService<Session>())
+            .AddSingleton<IAuthService, AuthService>();
 }

@@ -1,8 +1,8 @@
 ﻿<shadUi:Window xmlns="https://github.com/avaloniaui"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:main="clr-namespace:WCL.App.Views.Main"
                xmlns:shadUi="clr-namespace:ShadUI;assembly=ShadUI"
-               x:Class="WCL.App.Windows.MainWindow.MainWindow"
+               xmlns:main="clr-namespace:WCL.App.Views.Main"
+               x:Class="WCL.App.Windows.Main.MainWindow"
                x:DataType="main:MainViewModel"
                Title="WCL"
                MinWidth="800"
@@ -11,10 +11,13 @@
                Height="650"
                WindowStartupLocation="CenterScreen">
     <shadUi:Window.RightWindowTitleBarContent>
-        <Button Width="30" Height="30"
-                ToolTip.Tip="Change Theme"
-                Click="OnSwitchThemeClick">
-            <TextBlock Text="◐" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Width="30"
+                Height="30"
+                ToolTip.Tip="Сменить тему"
+                Command="{Binding SwitchThemeCommand}">
+            <TextBlock Text="{Binding CurrentIcon}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
         </Button>
     </shadUi:Window.RightWindowTitleBarContent>
 
@@ -24,4 +27,5 @@
     </shadUi:Window.Hosts>
 
     <main:MainView />
+
 </shadUi:Window>

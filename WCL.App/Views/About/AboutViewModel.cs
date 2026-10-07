@@ -2,13 +2,13 @@
 
 public sealed class AboutViewModel : SectionViewModel
 {
-    public override string Title => "О программе";
+    public override string Title => "О разработчике";
 
-    public string Name => "******";
+    public string Name => "Десятов Виктор";
 
     public string Role => "Desktop Developer";
 
     public string Stack => ".NET, Avalonia, WPF, MVVM, ReactiveUI";
 
-    public string Contacts => "*****";
+    public string Contacts => "@v10ctor";
 }

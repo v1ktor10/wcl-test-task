@@ -18,8 +18,7 @@ internal sealed class AuthApi(HttpClient http) : IAuthApi
         var dto = await SendAsync<LoginResponseDto>(HttpMethod.Post, "api/auth/login",
             new LoginRequestDto(request.Email, request.Password), ct);
 
-        return new AuthTokens(dto.AccessToken, dto.RefreshToken,
-            DateTimeOffset.UtcNow.AddSeconds(dto.ExpiresIn));
+        return new AuthTokens(dto.AccessToken, dto.RefreshToken);
     }
 
     public async Task<User> GetCurrentUserAsync(CancellationToken ct = default)

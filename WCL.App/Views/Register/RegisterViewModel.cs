@@ -11,11 +11,27 @@ namespace WCL.App.Views.Register;
 
 public sealed partial class RegisterViewModel : ViewModelBase
 {
+    private readonly IAuthService _auth;
+    private readonly IDialogService _dialogs;
+    private readonly INotificationService _notifications;
+
+    public RegisterViewModel(IAuthService auth,
+        IDialogService dialogs,
+        INotificationService notifications)
+    {
+        _auth = auth;
+        _dialogs = dialogs;
+        _notifications = notifications;
+
+        TrackLoading(SubmitCommand);
+    }
+
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Введите email")]
     [EmailAddress(ErrorMessage = "Неверный email")]
     public partial string Email { get; set; } = "";
+
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [Required(ErrorMessage = "Введите имя")]
@@ -27,21 +43,6 @@ public sealed partial class RegisterViewModel : ViewModelBase
     [Required(ErrorMessage = "Введите пароль")]
     [MinLength(8, ErrorMessage = "Минимум 8 символов")]
     public partial string Password { get; set; } = "";
-
-    private readonly IAuthService _auth;
-    private readonly IDialogService _dialogs;
-    private readonly INotificationService _notifications;
-    
-    public RegisterViewModel(IAuthService auth,
-        IDialogService dialogs,
-        INotificationService notifications)
-    {
-        _auth = auth;
-        _dialogs = dialogs;
-        _notifications = notifications;
-        
-        TrackLoading(SubmitCommand);
-    }
 
     [RelayCommand]
     private async Task SubmitAsync()
@@ -55,17 +56,14 @@ public sealed partial class RegisterViewModel : ViewModelBase
             _dialogs.Close(this);
             _notifications.ShowSuccess("Регистрация завершена", "Вы вошли в систему");
         }
+        catch (ServiceException ex) when (ex.Kind == ErrorKind.AutoLoginFailed)
+        {
+            _dialogs.Close(this);
+            _notifications.ShowError("Аккаунт создан", "Войдите вручную");
+        }
         catch (ServiceException ex)
         {
-            if (ex.Kind == ErrorKind.Unauthorized)
-            {
-                _dialogs.Close(this);
-                _notifications.ShowError("Аккаунт создан", "Войдите вручную");
-                return;
-            }
-
-            _notifications.ShowError("Не удалось зарегистрироваться",
-                ex.Kind == ErrorKind.Network ? "Нет связи с сервером" : ex.Message);
+            _notifications.ShowError("Не удалось зарегистрироваться", ex.ToUserMessage());
         }
     }
 

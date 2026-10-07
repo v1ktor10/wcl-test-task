@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ShadUI;
-using WCL.App.Services;
 using WCL.App.Services.AvatarLoader;
 using WCL.App.Services.Dialog;
 using WCL.App.Services.Notification;
@@ -10,12 +9,13 @@ using WCL.App.Views.Auth;
 using WCL.App.Views.Main;
 using WCL.App.Views.Profile;
 using WCL.App.Views.Register;
+using WCL.App.Windows.Main;
 
 namespace WCL.App;
 
 public static class AppServiceCollectionExtensions
 {
-    public static IServiceCollection RegisterAppDependencies(this IServiceCollection services)
+    public static IServiceCollection AddWclApp(this IServiceCollection services)
     {
         // ShadUI
         services.AddSingleton<DialogManager>();

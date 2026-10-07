@@ -12,9 +12,9 @@ namespace WCL.App.Views.Auth;
 public sealed partial class AuthViewModel : ViewModelBase
 {
     private readonly IAuthService _auth;
-    private readonly ISessionState _session;
-    private readonly INotificationService _notifications;
     private readonly IDialogService _dialogs;
+    private readonly INotificationService _notifications;
+    private readonly ISessionState _session;
 
     public AuthViewModel(
         IAuthService auth,
@@ -56,13 +56,13 @@ public sealed partial class AuthViewModel : ViewModelBase
         try
         {
             await _auth.LoginAsync(new LoginRequest(Email.Trim(), Password));
-    
+
             Password = "";
             _notifications.ShowSuccess("Вы вошли", UserName);
         }
         catch (ServiceException ex)
         {
-            _notifications.ShowError("Не удалось войти", ToMessage(ex));
+            _notifications.ShowError("Не удалось войти", ex.ToUserMessage());
         }
     }
 
@@ -73,12 +73,4 @@ public sealed partial class AuthViewModel : ViewModelBase
 
     [RelayCommand]
     private async Task LogoutAsync() => await _auth.LogoutAsync();
-
-    private static string ToMessage(ServiceException ex) => ex.Kind switch
-    {
-        ErrorKind.Unauthorized => "Неверный email или пароль",
-        ErrorKind.Network => "Нет связи с сервером",
-        ErrorKind.Server => "Сервер временно недоступен",
-        _ => ex.Message
-    };
 }

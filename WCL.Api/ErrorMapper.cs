@@ -33,10 +33,8 @@ internal static class ErrorMapper
             if (root.ValueKind != JsonValueKind.Object) return null;
 
             foreach (string name in new[] { "message", "error" })
-            {
                 if (root.TryGetProperty(name, out var value) && value.ValueKind == JsonValueKind.String)
                     return value.GetString();
-            }
         }
         catch (JsonException)
         {

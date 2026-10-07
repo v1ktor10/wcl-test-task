@@ -15,9 +15,9 @@ internal static class Program
     public static int Main(string[] args)
     {
         using var services = new ServiceCollection()
-            .RegisterCoreDependencies()
-            .RegisterApiDependencies(_apiBaseAddress)
-            .RegisterAppDependencies()
+            .AddWclCore()
+            .AddWclApi(_apiBaseAddress)
+            .AddWclApp()
             .BuildServiceProvider();
 
         return BuildAvaloniaApp(services).StartWithClassicDesktopLifetime(args);

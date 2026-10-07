@@ -4,7 +4,7 @@ using WCL.Core.Models.Requests;
 
 namespace WCL.Core.Services;
 
-public sealed class SessionState : ISessionState
+public sealed class Session : ISessionStore
 {
     public AuthTokens? Tokens { get; private set; }
     public User? CurrentUser { get; private set; }

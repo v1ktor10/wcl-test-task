@@ -7,5 +7,6 @@ public enum ErrorKind
     Unauthorized,
     Validation,
     NotFound,
-    Server
+    Server,
+    AutoLoginFailed
 }

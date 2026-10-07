@@ -8,8 +8,7 @@ public abstract partial class ViewModelBase : ObservableValidator
 {
     private readonly List<IAsyncRelayCommand> _trackedCommands = [];
 
-    [ObservableProperty]
-    public partial bool IsLoading { get; private set; }
+    [ObservableProperty] public partial bool IsLoading { get; private set; }
 
     protected void TrackLoading(params IAsyncRelayCommand[] commands)
     {

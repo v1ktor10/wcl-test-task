@@ -4,7 +4,7 @@ using WCL.Core.Models.Requests;
 
 namespace WCL.Core.Services;
 
-public sealed class AuthService(IAuthApi api, ISessionState session) : IAuthService
+public sealed class AuthService(IAuthApi api, ISessionStore session) : IAuthService
 {
     public async Task LoginAsync(LoginRequest request, CancellationToken ct = default)
     {
@@ -23,7 +23,15 @@ public sealed class AuthService(IAuthApi api, ISessionState session) : IAuthServ
     public async Task RegisterAsync(RegisterRequest request, CancellationToken ct = default)
     {
         await api.RegisterAsync(request, ct);
-        await LoginAsync(new LoginRequest(request.Email, request.Password), ct);
+        try
+        {
+            await LoginAsync(new LoginRequest(request.Email, request.Password), ct);
+        }
+        catch (ServiceException ex)
+        {
+            throw new ServiceException(ErrorKind.AutoLoginFailed,
+                "Аккаунт создан, но войти автоматически не удалось", ex);
+        }
     }
 
     public async Task LogoutAsync(CancellationToken ct = default)

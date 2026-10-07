@@ -15,7 +15,7 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-        
+
         <ContentControl Grid.Column="1"
                         Content="{Binding Auth}" />
     </Grid>

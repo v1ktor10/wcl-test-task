@@ -5,7 +5,7 @@ namespace WCL.Api;
 
 public static class ApiServiceCollectionExtensions
 {
-    public static IServiceCollection RegisterApiDependencies(this IServiceCollection services, Uri baseAddress)
+    public static IServiceCollection AddWclApi(this IServiceCollection services, Uri baseAddress)
     {
         services.AddTransient<BearerTokenHandler>();
 
@@ -15,9 +15,9 @@ public static class ApiServiceCollectionExtensions
                 client.Timeout = TimeSpan.FromSeconds(15);
             })
             .AddHttpMessageHandler<BearerTokenHandler>();
-        
+
         services.AddHttpClient<IImageApi, ImageApi>(c => c.Timeout = TimeSpan.FromSeconds(15));
-        
+
         return services;
     }
 }
