@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Styling;
 
-namespace WCL.App.Services;
+namespace WCL.App.Services.Theme;
 
 internal sealed class ThemeService : IThemeService
 {

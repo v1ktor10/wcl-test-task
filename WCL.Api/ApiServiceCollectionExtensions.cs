@@ -15,7 +15,9 @@ public static class ApiServiceCollectionExtensions
                 client.Timeout = TimeSpan.FromSeconds(15);
             })
             .AddHttpMessageHandler<BearerTokenHandler>();
-
+        
+        services.AddHttpClient<IImageApi, ImageApi>(c => c.Timeout = TimeSpan.FromSeconds(15));
+        
         return services;
     }
 }

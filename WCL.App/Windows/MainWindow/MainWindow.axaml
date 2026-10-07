@@ -5,19 +5,23 @@
                x:Class="WCL.App.Windows.MainWindow.MainWindow"
                x:DataType="main:MainViewModel"
                Title="WCL"
+               MinWidth="800"
                Width="800"
+               MinHeight="650"
                Height="650"
-               WindowStartupLocation="CenterScreen"
-               CanResize="False">
+               WindowStartupLocation="CenterScreen">
     <shadUi:Window.RightWindowTitleBarContent>
         <Button Width="30" Height="30"
-                CornerRadius="{DynamicResource MdCornerRadius}"
                 ToolTip.Tip="Change Theme"
                 Click="OnSwitchThemeClick">
             <TextBlock Text="◐" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Button>
     </shadUi:Window.RightWindowTitleBarContent>
 
-    <main:MainView />
+    <shadUi:Window.Hosts>
+        <shadUi:DialogHost Manager="{Binding DialogManager}" />
+        <shadUi:ToastHost Manager="{Binding ToastManager}" />
+    </shadUi:Window.Hosts>
 
+    <main:MainView />
 </shadUi:Window>

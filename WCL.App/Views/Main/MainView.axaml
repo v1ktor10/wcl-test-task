@@ -3,17 +3,20 @@
              xmlns:main="clr-namespace:WCL.App.Views.Main"
              x:Class="WCL.App.Views.Main.MainView"
              x:DataType="main:MainViewModel">
-    <Grid Margin="12">
-        <TabControl ItemsSource="{Binding Sections}"
-                    SelectedItem="{Binding SelectedSection}">
+    <Grid Margin="12" ColumnDefinitions="*, Auto" ColumnSpacing="12">
+
+        <TabControl Grid.Column="0"
+                    ItemsSource="{Binding Sections}"
+                    SelectedItem="{Binding SelectedSection}"
+                    HorizontalAlignment="Stretch">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Title}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-
-        <ContentControl HorizontalAlignment="Right" VerticalAlignment="Top"
-                        />
+        
+        <ContentControl Grid.Column="1"
+                        Content="{Binding Auth}" />
     </Grid>
 </UserControl>

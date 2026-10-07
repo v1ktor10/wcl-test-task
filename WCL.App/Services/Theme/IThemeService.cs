@@ -1,4 +1,4 @@
-﻿namespace WCL.App.Services;
+﻿namespace WCL.App.Services.Theme;
 
 public interface IThemeService
 {

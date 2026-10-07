@@ -1,26 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using WCL.App.Services;
+using ShadUI;
+using WCL.App.Views.Auth;
 
 namespace WCL.App.Views.Main;
 
 public sealed partial class MainViewModel : ViewModelBase
 {
-    [ObservableProperty] private SectionViewModel _selectedSection;
-    private readonly IThemeService _theme;
+    [ObservableProperty] public partial SectionViewModel SelectedSection { get; set; }
 
-    public MainViewModel(IEnumerable<SectionViewModel> sections, IThemeService theme)
+    public MainViewModel(
+        IEnumerable<SectionViewModel> sections,
+        AuthViewModel auth,
+        DialogManager dialogManager,
+        ToastManager toastManager)
     {
         Sections = [.. sections];
-        _selectedSection = Sections[0];
-        _theme = theme;
-        theme.Changed += (_, _) => OnPropertyChanged(nameof(IsDarkTheme));
-    }
-
-    public bool IsDarkTheme
-    {
-        get => _theme.IsDark;
-        set => _theme.IsDark = value;
+        SelectedSection = Sections[0];
+        Auth = auth;
+        DialogManager = dialogManager;
+        ToastManager = toastManager;
     }
 
     public IReadOnlyList<SectionViewModel> Sections { get; }
+    public AuthViewModel Auth { get; }
+    public DialogManager DialogManager { get; }
+    public ToastManager ToastManager { get; }
 }

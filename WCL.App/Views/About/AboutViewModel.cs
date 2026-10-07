@@ -10,5 +10,5 @@ public sealed class AboutViewModel : SectionViewModel
 
     public string Stack => ".NET, Avalonia, WPF, MVVM, ReactiveUI";
 
-    public string Contacts => "tg: *****";
+    public string Contacts => "*****";
 }
