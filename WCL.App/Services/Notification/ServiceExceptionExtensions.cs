@@ -8,6 +8,7 @@ internal static class ServiceExceptionExtensions
     {
         ErrorKind.Network => "Нет связи с сервером",
         ErrorKind.Server => "Сервер временно недоступен",
+        ErrorKind.Unauthorized => "Неверный логин или пароль",
         ErrorKind.Validation => ex.Message,
         _ => "Что-то пошло не так"
     };
